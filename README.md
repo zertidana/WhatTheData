@@ -88,7 +88,7 @@ Found a bug? Got an idea? PRs and issues are welcome!
 
 ## 📄 License
 
-MIT — do whatever you want with it.
+MIT - do whatever you want with it.
 
 ---
 
@@ -96,7 +96,7 @@ MIT — do whatever you want with it.
 
 Built by [Dana Zerti](https://github.com/zertidana) as part of a data portfolio project.
 
-If this helped you, give it a ⭐ — it makes my day!
+If this helped you, give it a ⭐ - it makes my day!
 
 ---
 

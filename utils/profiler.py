@@ -60,7 +60,8 @@ def get_categorical_summary(df: pd.DataFrame) -> dict:
         top_value = df[col].mode()[0] if not df[col].mode().empty else None
         summary[col] = {
             "unique_counts": unique_counts,
-            "top_value": top_value
+            "top_value": top_value,
+            "top_value_count": df[col].value_counts().iloc[0] if not df[col].empty else None
         }
     return summary
 
@@ -76,6 +77,7 @@ def find_outliers(df: pd.DataFrame) -> dict:
         upper_bound = Q3 + 1.5 * IQR
         outlier_count = df[(df[col] < lower_bound) | (df[col] > upper_bound)].shape[0]
         outliers[col] = {
-            "outlier_count": outlier_count
+            "outlier_count": outlier_count,
+            "outliers": df[(df[col] < lower_bound) | (df[col] > upper_bound)][col].tolist()
         }
     return outliers

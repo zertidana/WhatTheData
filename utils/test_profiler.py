@@ -112,11 +112,12 @@ class TestFindOutliers:
             'A': [1, 2, 3, 4, 100]
         })
         outliers = find_outliers(df)
-        assert outliers['A'] == [100]
+        assert outliers['A']['outlier_count'] == 1
+        assert outliers['A']['outliers'] == [100]
 
     def test_find_outliers_no_outliers(self):
         df = pd.DataFrame({
             'A': [1, 2, 3, 4, 5]
         })
         outliers = find_outliers(df)
-        assert outliers['A'] == []
+        assert outliers['A'] == {'outlier_count': 0, 'outliers': []}
