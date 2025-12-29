@@ -1,0 +1,7 @@
+pytest
+pylint
+streamlit
+pandas
+ydata-profiling
+plotly
+pytest-cov
