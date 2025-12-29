@@ -12,4 +12,3 @@ def sample_dataframe():
         'C': [10.5, 20.3, 30.1, None]
     }
     return pd.DataFrame(data)
-

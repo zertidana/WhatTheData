@@ -1,4 +1,5 @@
 """Utility functions for data profiling and analysis."""
+
 import pandas as pd 
 
 
@@ -54,6 +55,7 @@ def get_numeric_summary(df: pd.DataFrame) -> dict:
 
 def get_categorical_summary(df: pd.DataFrame) -> dict:
     """Returns unique counts, top values"""
+
     summary = {}
     for col in df.select_dtypes(include='object').columns:
         unique_counts = df[col].nunique()
@@ -68,6 +70,7 @@ def get_categorical_summary(df: pd.DataFrame) -> dict:
 
 def find_outliers(df: pd.DataFrame) -> dict:
     """Returns outliers using the IQR method"""
+
     outliers = {}
     for col in df.select_dtypes(include='number').columns:
         Q1 = df[col].quantile(0.25)

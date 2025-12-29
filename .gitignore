@@ -1,0 +1,15 @@
+.coverage
+.streamlit/
+__pycache__/
+*.pyc
+.env
+venv/
+.ipynb_checkpoints
+.DS_Store
+.idea/
+.vscode/
+html_reports/
+reports/
+data/
+logs/
+*.egg-info/
