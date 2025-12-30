@@ -5,3 +5,4 @@ pandas
 ydata-profiling
 plotly
 pytest-cov
+setuptools

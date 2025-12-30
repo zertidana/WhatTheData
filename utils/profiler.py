@@ -75,9 +75,9 @@ def find_outliers(df: pd.DataFrame) -> dict:
     for col in df.select_dtypes(include='number').columns:
         q_1 = df[col].quantile(0.25)
         q_3 = df[col].quantile(0.75)
-        IQR = q_3 - q_1
-        lower_bound = q_1 - 1.5 * IQR
-        upper_bound = q_3 + 1.5 * IQR
+        interquartile_range = q_3 - q_1
+        lower_bound = q_1 - 1.5 * interquartile_range
+        upper_bound = q_3 + 1.5 * interquartile_range
         outlier_count = df[(df[col] < lower_bound) | (df[col] > upper_bound)].shape[0]
         outliers[col] = {
             "outlier_count": outlier_count,
