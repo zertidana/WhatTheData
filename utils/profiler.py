@@ -1,6 +1,6 @@
 """Utility functions for data profiling and analysis."""
 
-import pandas as pd 
+import pandas as pd
 
 
 def get_basic_info(df: pd.DataFrame) -> dict:
@@ -15,7 +15,7 @@ def get_basic_info(df: pd.DataFrame) -> dict:
 
 
 def get_missing_values(df: pd.DataFrame) -> dict:
-    """Returns counts and percentages"""
+    """Returns counts and percentages."""
 
     missing_info = {}
     total_rows = len(df)
@@ -30,7 +30,7 @@ def get_missing_values(df: pd.DataFrame) -> dict:
 
 
 def get_numeric_summary(df: pd.DataFrame) -> dict:
-    """Returns mean, median, min, max, std"""
+    """Returns mean, median, min, max, std."""
 
     summary = {}
     for col in df.select_dtypes(include='number').columns:
@@ -54,7 +54,7 @@ def get_numeric_summary(df: pd.DataFrame) -> dict:
 
 
 def get_categorical_summary(df: pd.DataFrame) -> dict:
-    """Returns unique counts, top values"""
+    """Returns unique counts, top values."""
 
     summary = {}
     for col in df.select_dtypes(include='object').columns:
@@ -69,15 +69,15 @@ def get_categorical_summary(df: pd.DataFrame) -> dict:
 
 
 def find_outliers(df: pd.DataFrame) -> dict:
-    """Returns outliers using the IQR method"""
+    """Returns outliers using the IQR method."""
 
     outliers = {}
     for col in df.select_dtypes(include='number').columns:
-        Q1 = df[col].quantile(0.25)
-        Q3 = df[col].quantile(0.75)
-        IQR = Q3 - Q1
-        lower_bound = Q1 - 1.5 * IQR
-        upper_bound = Q3 + 1.5 * IQR
+        q_1 = df[col].quantile(0.25)
+        q_3 = df[col].quantile(0.75)
+        IQR = q_3 - q_1
+        lower_bound = q_1 - 1.5 * IQR
+        upper_bound = q_3 + 1.5 * IQR
         outlier_count = df[(df[col] < lower_bound) | (df[col] > upper_bound)].shape[0]
         outliers[col] = {
             "outlier_count": outlier_count,

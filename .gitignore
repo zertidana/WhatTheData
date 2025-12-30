@@ -13,3 +13,6 @@ reports/
 data/
 logs/
 *.egg-info/
+.pytest_cache/
+
+utils/__pycache__
