@@ -40,7 +40,8 @@ def generate_heatmap(df: pd.DataFrame):
     """Generates and displays a heatmap of correlations between numeric columns."""
 
     st.subheader("Correlation Heatmap")
-    corr = df.corr()
+    numeric_df = df.select_dtypes(include=['number'])
+    corr = numeric_df.corr()
     fig = px.imshow(corr,
                     text_auto=True,
                     title='Correlation Heatmap')

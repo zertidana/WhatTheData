@@ -16,3 +16,4 @@ logs/
 .pytest_cache/
 
 utils/__pycache__
+.github/

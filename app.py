@@ -13,6 +13,12 @@ from utils.profiler import (
     get_numeric_summary,
     get_categorical_summary
 )
+from visualisations import (
+    generate_histogram,
+    generate_bar_chart,
+    generate_scatter_plot,
+    generate_heatmap
+)
 
 
 def generate_profiling_report(df: pd.DataFrame) -> ProfileReport:
@@ -88,11 +94,9 @@ def main():
         st.header("DataFrame Overview")
         st.write(df.head())
 
-        # Generate and display profiling report
         profile = generate_profiling_report(df)
         st_profile_report(profile)
 
-        # Display custom summaries
         basic_info = get_basic_info(df)
         display_basic_info(basic_info)
 
@@ -105,6 +109,20 @@ def main():
         categorical_summary = get_categorical_summary(df)
         display_categorical_summary(categorical_summary)
 
+        st.header("Visualisations")
+        numeric_cols = df.select_dtypes(include=['number']).columns.tolist()
+        categorical_cols = df.select_dtypes(include=['object', 'category']).columns.tolist()
+        for col in numeric_cols:
+            generate_histogram(df, col)
+        for col in categorical_cols:
+            if df[col].nunique() < 20:
+                generate_bar_chart(df, col)
+        if len(numeric_cols) >= 2:
+            generate_scatter_plot(df, numeric_cols[0], numeric_cols[1])
+        if len(numeric_cols) >= 2:
+            generate_heatmap(df)
+
 
 if __name__ == "__main__":
     main()
+    
